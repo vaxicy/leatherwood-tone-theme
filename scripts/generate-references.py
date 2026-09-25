@@ -49,15 +49,17 @@ def color(k):
 # (see store-assets/ASSET-NOTES.md).
 # ---------------------------------------------------------------------------
 LOGO_TINT = '#E8EAED'        # ntp_logo_alternate tone Chrome paints on a dark NTP
-SEARCH_TEXT = '#9AA0A6'      # shortcut labels / new-tab header
+SEARCH_TEXT = '#9AA0A6'      # omnibox glyph; marquee / intro secondary text
+GRAY_LABEL = '#C4C7C5'       # shortcut labels + the new-tab "Images" row
 OMNI_BORDER = '#9AA0A6'      # omnibox outline on the dark toolbar
+MONO_G = '#9AA0A6'           # monochrome search glyph on the left of an empty omnibox
 NSEARCH_BG = '#FFFFFF'       # new-tab search pill: Chrome renders it light here
 NSEARCH_TEXT = '#3C4043'     # placeholder inside the light search pill
-NSEARCH_ICON = '#5F6368'     # plus / mic glyphs inside the search pill
-SHORTCUT_TILE = '#FFFFFF'    # favicon tiles (YouTube / Chrome Web Store)
+NSEARCH_ICON = '#5F6368'     # magnifier / mic glyphs inside the search pill
 SHORTCUT_ADD = '#3C4043'     # "Add shortcut" circle
 PILL_BG = '#202124'          # Customize Chrome pill
-PILL_FG = '#A8C7FA'
+PILL_FG = '#E8EAED'          # pill label + pencil, sampled from the real install
+NAV_GLYPH = '#9FA540'        # toolbar nav glyphs: the olive button tint Chrome applies
 WIN_BTN = '#E1E1D5'          # window glyphs on the olive frame
 G_RED, G_BLUE, G_YELLOW, G_GREEN = '#EA4335', '#4285F4', '#FBBC05', '#34A853'
 
@@ -76,7 +78,8 @@ VARS = f""":root{{
   --logoc:{LOGO_TINT};
   --ui:{SEARCH_TEXT};
   --soft:{color('bookmark_text')};
-  --shortcut:{SHORTCUT_TILE};
+  --graylbl:{GRAY_LABEL};
+  --nsearch:{NSEARCH_BG};
   --shortcutadd:{SHORTCUT_ADD};
   --omnib:{OMNI_BORDER};
   --wbtn:{WIN_BTN};
@@ -117,18 +120,18 @@ svg{display:block}
 
 /* ---- new tab page ---- */
 .ntp{flex:1;position:relative;background:var(--ntp)}
-.gtop{position:absolute;top:13px;right:12px;display:flex;align-items:center;gap:16px;font-size:12.5px;color:var(--ui)}
+.gtop{position:absolute;top:13px;right:12px;display:flex;align-items:center;gap:16px;font-size:12.5px;color:var(--graylbl)}
 .glogo{position:absolute;top:86.5px;left:0;right:0;text-align:center;font-family:'Google Sans','Product Sans',Arial,sans-serif;
        font-size:66px;font-weight:500;letter-spacing:-2.8px;color:var(--logoc);line-height:1}
-.nsearch{position:absolute;top:187px;left:50%;margin-left:-264px;width:529px;height:44px;border-radius:22px;background:var(--shortcut);
+.nsearch{position:absolute;top:187px;left:50%;margin-left:-264px;width:529px;height:44px;border-radius:22px;background:var(--nsearch);
          box-shadow:0 1px 6px rgba(0,0,0,.42);display:flex;align-items:center;gap:13px;padding:0 14px 0 20px}
 .nsearch .ph{flex:1;font-size:15px;color:#3C4043;white-space:nowrap;overflow:hidden}
 .shortcuts{position:absolute;top:251px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.shortcut{width:78px;text-align:center;font-size:12px;color:var(--ui)}
-.shortcut .circle{width:33px;height:33px;border-radius:50%;background:var(--shortcut);margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
-.shortcut .circle.add{background:var(--shortcutadd)}
+.shortcut{width:78px;text-align:center;font-size:12px;color:var(--graylbl)}
+.shortcut .fav{width:33px;height:33px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+.shortcut .fav.add{border-radius:50%;background:var(--shortcutadd)}
 .shortcut .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.customize{position:absolute;right:10px;bottom:10px;height:26px;border-radius:13px;background:#202124;color:#A8C7FA;
+.customize{position:absolute;right:10px;bottom:10px;height:26px;border-radius:13px;background:#202124;color:#E8EAED;
            display:flex;align-items:center;gap:6px;padding:0 12px;font-size:11.5px}
 
 /* ---- promo: 440x280 brand tile ---- */
@@ -162,6 +165,12 @@ svg{display:block}
 
 
 # ----------------------------------------------------------------- glyphs
+def mono_g(size, fill=MONO_G):
+    """Monochrome search glyph Chrome shows at the left of an empty omnibox."""
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24">'
+            f'<path fill="{fill}" d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/></svg>')
+
+
 def g_mark(size):
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 48 48">'
             f'<path fill="{G_RED}" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>'
@@ -215,6 +224,10 @@ def lens(size):
 
 
 def favicon(kind, size=12):
+    if kind == 'youtube':
+        return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24">'
+                f'<rect x="0.5" y="4" width="23" height="16" rx="5" fill="#FF0000"/>'
+                f'<path d="M9.7 8.3l6.6 3.7-6.6 3.7z" fill="#FFFFFF"/></svg>')
     if kind == 'leaf':
         return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24">'
                 f'<path d="M19 4c0 8-5.4 13-13 13 0-8 5.4-13 13-13z" fill="#9FA540"/>'
@@ -239,7 +252,7 @@ def win_buttons():
 
 
 def nav_icons():
-    g = f'stroke="{color("toolbar_button_icon")}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"'
+    g = f'stroke="{NAV_GLYPH}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"'
     return ('<div class="nav">'
             f'<svg width="16" height="16" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" {g}/></svg>'
             f'<svg width="16" height="16" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" {g}/></svg>'
@@ -279,7 +292,7 @@ def window(height=675):
              + ''.join(tab(t, k, i == 2) for i, (t, k) in enumerate(tabs))
              + f'<div class="newtab">{plus(13, color("toolbar_button_icon"))}</div>'
              + win_buttons() + '</div>')
-    omni = ('<div class="omni">' + g_mark(14) + '<span class="ph"></span>'
+    omni = ('<div class="omni">' + mono_g(15) + '<span class="ph"></span>'
             + magnifier(13, SEARCH_TEXT) + '</div>')
     dots = ''.join(f'<circle cx="12" cy="{5 + 7 * i}" r="1.7" fill="{color("toolbar_button_icon")}"/>' for i in range(3))
     icon = color('toolbar_button_icon')
@@ -292,13 +305,13 @@ def window(height=675):
              '</div>')
     toolbar = '<div class="toolbar">' + nav_icons() + omni + kebab + '</div>'
     glogo = '<div class="glogo">Google</div>'
-    nsearch = ('<div class="nsearch">' + plus(20, NSEARCH_ICON)
+    nsearch = ('<div class="nsearch">' + magnifier(20, NSEARCH_ICON)
                + '<span class="ph">Search Google or type a URL</span>'
                + mic(17, NSEARCH_ICON) + lens(19) + '</div>')
     short = ('<div class="shortcuts">'
-             f'<div class="shortcut"><div class="circle">{pinwheel(17)}</div><div class="lbl">Web Store</div></div>'
-             f'<div class="shortcut"><div class="circle">{favicon("wood", 17)}</div><div class="lbl">Woodcraft</div></div>'
-             f'<div class="shortcut"><div class="circle add">{plus(15, "#E8EAED")}</div><div class="lbl">Add shortcut</div></div>'
+             f'<div class="shortcut"><div class="fav">{favicon("youtube", 33)}</div><div class="lbl">YouTube</div></div>'
+             f'<div class="shortcut"><div class="fav">{pinwheel(33)}</div><div class="lbl">Web Store</div></div>'
+             f'<div class="shortcut"><div class="fav add">{plus(19, "#E8EAED")}</div><div class="lbl">Add shortcut</div></div>'
              '</div>')
     customize = ('<div class="customize">'
                  f'<svg width="12" height="12" viewBox="0 0 24 24"><path d="M4 20l4.2-1.1L20 7.1 16.9 4 5.1 15.8z" fill="none" stroke="{PILL_FG}" stroke-width="2" stroke-linejoin="round"/></svg>'

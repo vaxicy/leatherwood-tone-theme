@@ -13,7 +13,8 @@
   --logoc:#E8EAED;
   --ui:#9AA0A6;
   --soft:#C0C1A4;
-  --shortcut:#FFFFFF;
+  --graylbl:#C4C7C5;
+  --nsearch:#FFFFFF;
   --shortcutadd:#3C4043;
   --omnib:#9AA0A6;
   --wbtn:#E1E1D5;
@@ -52,18 +53,18 @@ svg{display:block}
 
 /* ---- new tab page ---- */
 .ntp{flex:1;position:relative;background:var(--ntp)}
-.gtop{position:absolute;top:13px;right:12px;display:flex;align-items:center;gap:16px;font-size:12.5px;color:var(--ui)}
+.gtop{position:absolute;top:13px;right:12px;display:flex;align-items:center;gap:16px;font-size:12.5px;color:var(--graylbl)}
 .glogo{position:absolute;top:86.5px;left:0;right:0;text-align:center;font-family:'Google Sans','Product Sans',Arial,sans-serif;
        font-size:66px;font-weight:500;letter-spacing:-2.8px;color:var(--logoc);line-height:1}
-.nsearch{position:absolute;top:187px;left:50%;margin-left:-264px;width:529px;height:44px;border-radius:22px;background:var(--shortcut);
+.nsearch{position:absolute;top:187px;left:50%;margin-left:-264px;width:529px;height:44px;border-radius:22px;background:var(--nsearch);
          box-shadow:0 1px 6px rgba(0,0,0,.42);display:flex;align-items:center;gap:13px;padding:0 14px 0 20px}
 .nsearch .ph{flex:1;font-size:15px;color:#3C4043;white-space:nowrap;overflow:hidden}
 .shortcuts{position:absolute;top:251px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.shortcut{width:78px;text-align:center;font-size:12px;color:var(--ui)}
-.shortcut .circle{width:33px;height:33px;border-radius:50%;background:var(--shortcut);margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
-.shortcut .circle.add{background:var(--shortcutadd)}
+.shortcut{width:78px;text-align:center;font-size:12px;color:var(--graylbl)}
+.shortcut .fav{width:33px;height:33px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+.shortcut .fav.add{border-radius:50%;background:var(--shortcutadd)}
 .shortcut .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.customize{position:absolute;right:10px;bottom:10px;height:26px;border-radius:13px;background:#202124;color:#A8C7FA;
+.customize{position:absolute;right:10px;bottom:10px;height:26px;border-radius:13px;background:#202124;color:#E8EAED;
            display:flex;align-items:center;gap:6px;padding:0 12px;font-size:11.5px}
 
 /* ---- promo: 440x280 brand tile ---- */
