@@ -72,7 +72,7 @@ VARS = f""":root{{
   --tabtx2:{color('tab_background_text')};
   --bmtext:{color('bookmark_text')};
   --icon:{color('toolbar_button_icon')};
-  --link:{color('ntp_link')};
+  --sprout:{color('button_background')};
   --ntptext:{color('ntp_text')};
   --backdrop:{color('backdrop')};
   --logoc:{LOGO_TINT};
@@ -140,11 +140,11 @@ svg{display:block}
 .tile h1{font-family:Georgia,serif;font-weight:normal;font-size:36px;margin:12px 0 0;color:var(--ntptext)}
 .tile .kicker{font-size:13px;letter-spacing:5px;margin-top:8px;color:#E9EBD2}
 .tile p{font-size:14px;margin:17px 0 0;color:#E9EBD2}
-.tile:after{content:'';position:absolute;left:0;right:0;bottom:0;height:14px;background:var(--link)}
+.tile:after{content:'';position:absolute;left:0;right:0;bottom:0;height:14px;background:var(--sprout)}
 
 /* ---- promo: 1400x560 marquee ---- */
 .marquee{width:1400px;height:560px;background:var(--backdrop);position:relative;overflow:hidden;text-align:center;
-         border-top:8px solid var(--link)}
+         border-top:8px solid var(--sprout)}
 .marquee h1{font-family:Georgia,serif;font-weight:normal;font-size:47px;margin:26px 0 0;color:var(--ntptext)}
 .marquee p{font-size:17px;margin:9px 0 0;color:var(--ui)}
 .marquee .frame{position:absolute;top:139px;left:300px;width:800px;height:370px;overflow:hidden;border:2px solid var(--frame);
@@ -330,14 +330,14 @@ tile = ('<div class="tile">' + f'<img src="{LOGO_URI}" alt="Leatherwood Tone log
         + '<h1>Leatherwood</h1><div class="kicker">CHROME THEME</div>'
         + '<p>Earthy olive wood for a calmer browser.</p></div>')
 marquee = ('<div class="marquee"><h1>Leatherwood Tone Theme</h1>'
-           '<p>Olive green, deep wood and one pale reed accent.</p>'
+           '<p>Olive green, deep wood and one brighter olive accent.</p>'
            + '<div class="frame">' + window(height=500) + '</div></div>')
 
 PALETTE = [
     ('Olive Frame', 'frame', 'Window frame & tab strip', 'ntp_text'),
     ('Deep Olive', 'toolbar', 'Toolbar, bookmarks & active tab', 'ntp_text'),
     ('Night Wood', 'ntp_background', 'New tab background', 'ntp_text'),
-    ('Pale Reed', 'ntp_link', 'Accent & links', 'ntp_background'),
+    ('Olive Sprout', 'button_background', 'Toolbar buttons & nav glyphs', 'ntp_background'),
 ]
 assert all(tuple(C['backdrop']) != tuple(C[k]) for _n, k, _r, _f in PALETTE), \
     'page backdrop must not equal a swatch colour'
@@ -345,7 +345,7 @@ cards = ''.join(
     f'<div class="card" style="background:{color(k)};color:{color(fg)};border:1px solid rgba(240,240,234,.18)">'
     f'<strong>{name}</strong><span>{color(k)} · {role}</span></div>' for name, k, role, fg in PALETTE)
 intro = ('<div class="intro"><div class="kicker">AN EARTHY, DARK PALETTE</div><h1>Leatherwood Tone Theme</h1>'
-         '<p class="lead">Olive green, deep wood and one pale reed accent.</p><div class="cards">' + cards + '</div>'
+         '<p class="lead">Olive green, deep wood and one brighter olive accent.</p><div class="cards">' + cards + '</div>'
          '<p class="chips">Solid colors · Dark interface · No wallpaper · Tuned for contrast</p></div>')
 
 

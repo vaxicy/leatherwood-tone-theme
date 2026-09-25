@@ -5,7 +5,7 @@
 
 **皮革木调 · 一款沉静的暗色 Chrome 主题**
 
-An earthy dark Chrome theme in olive green and night-wood brown. Solid colors, light text tuned for contrast, and one pale reed accent for links — no wallpaper, no gradient, no textures.
+An earthy dark Chrome theme in olive green and night-wood brown. Solid colors, light text tuned for contrast, and a brighter olive accent on the toolbar buttons — no wallpaper, no gradient, no textures.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-Non--Commercial-red)
@@ -39,10 +39,9 @@ An earthy dark Chrome theme in olive green and night-wood brown. Solid colors, l
 | New tab background | Night Wood | `#242214` (36, 34, 20) |
 | Address bar | Deep Shadow | `#33301A` (51, 48, 26) |
 | Text & icons | Warm Chalk | `#F0F0EA` (240, 240, 234) |
-| Accent & links | Pale Reed | `#A0E0E3` (160, 224, 227) |
-| Toolbar button accent | Olive Sprout | `#9FA540` (159, 165, 64) |
+| Toolbar buttons & nav glyphs | Olive Sprout | `#9FA540` (159, 165, 64) |
 
-The olive layers are deliberately close in hue and far apart in depth: the frame carries the brand green, the toolbar and bookmark bar sit a shade darker so content stays anchored, and the new-tab page drops to night-wood brown so late-night browsing is easy on the eyes. Pale reed is used only for links and highlights, never for body text.
+The olive layers are deliberately close in hue and far apart in depth: the frame carries the brand green, the toolbar and bookmark bar sit a shade darker so content stays anchored, and the new-tab page drops to night-wood brown so late-night browsing is easy on the eyes. A brighter olive marks the toolbar buttons and navigation glyphs, while light text keeps every dark layer readable.
 
 ---
 
