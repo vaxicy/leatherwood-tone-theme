@@ -1,0 +1,3 @@
+Leatherwood Tone Theme brings an earthy, quiet edge to the browser. The window frame sits in olive green, the toolbar, bookmarks and active tab step down to a deeper olive, and the new tab page opens onto night-wood brown with a single pale reed accent carrying links and highlights.
+
+Every surface is a solid colour - no wallpaper, no gradient, no image files - and the light text and icons are tuned to stay readable across the dark olive layers.
